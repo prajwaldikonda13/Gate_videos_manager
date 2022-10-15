@@ -1,0 +1,14 @@
+﻿if ((long)cmbRoot.SelectedValue > 0 && (long)cmbSubject.SelectedValue > 0 && (long)cmbTopic.SelectedValue > 0)
+            {
+                TimeSpan totalTime = TimeSpan.FromTicks(0);
+                for (int i = 0; i < contentsList.Count; i++)
+                {
+                    TimeSpan ts = TimeSpan.FromTicks(contentsList[i].Duration);
+                    totalTime = totalTime.Add(ts);
+                    if (ts.Hours > 0)
+                        contentsList[i].VideoName += "(" + ts.Hours + ":" + ts.Minutes + ":" + ts.Seconds + ")";
+                    else
+                        contentsList[i].VideoName += "(" + ts.Minutes + ":" + ts.Seconds + ")";
+                }
+                textBox1.Text = "Total duration of " + cmbTopic.Text + " is :" + totalTime.Hours + ":" + totalTime.Minutes + ":" + totalTime.Seconds;
+            }
